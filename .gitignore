@@ -1,0 +1,14 @@
+.env
+*.swp
+**__pycache__**
+*.pth
+*.vit
+output
+*.zip
+*.h5
+*.zip
+test_images_passport
+results
+*.jpg
+*.jpeg
+weights
