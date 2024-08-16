@@ -21,8 +21,8 @@ class LitClassifier(LightningModule):
 
         self.train_accuracy = torchmetrics.Accuracy('binary')
         self.val_accuracy = torchmetrics.Accuracy('binary')
-        self.train_f1 = torchmetrics.F1Score('binary', num_classes=self.num_labels, average="macro")
-        self.val_f1 = torchmetrics.F1Score('binary', num_classes=self.num_labels, average="macro")
+        self.train_f1 = torchmetrics.F1Score(task='binary', num_classes=self.num_labels, average="macro")
+        self.val_f1 = torchmetrics.F1Score(task='binary', num_classes=self.num_labels, average="macro")
 
     def forward(self, x):
         x = self.model(x)
