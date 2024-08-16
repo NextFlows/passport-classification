@@ -76,19 +76,4 @@ with gr.Blocks(css=css) as demo:
     image_gallery.select(fn=load_selected_image, inputs=image_gallery, outputs=input_image)
 
 # Launch the app
-demo.launch(debug=True, server_port=3103, server_name="0.0.0.0")
-
-
-
-
-## Create Gradio interface
-#interface = gr.Interface(
-#    fn=classify_image,
-#    inputs=gr.Image(),
-#    outputs='label',
-#    title='Passport Classification',
-#    description="""Please upload an image to run the model. This is a transformer-based model that classifies whether the uploaded image is a valid passport image or not. This is useful for KYC applications. (Note: Wait for the image to completely finish uploading before clicking on the 'Submit', otherwise you may get an error.)\n\nThis demo is built by NextFlows. Our goal is to make AI cost-effective and accessible for organisations. For commercial inquiries, reach out to nextflows.ai@gmail.com. We can assist with finetuning models for specific use cases, multilingual support, enhancing performance, production deployment, and more.""",
-#)
-#
-## Launch the app
-#interface.launch(share=True)
+demo.launch()
