@@ -9,6 +9,4 @@ output
 *.zip
 test_images_passport
 results
-*.jpg
-*.jpeg
 weights
