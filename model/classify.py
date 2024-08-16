@@ -62,6 +62,14 @@ class PassportClassifier:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = self.crop_margins(img)
 
+        # Check if face is present in image
+        # All passports have a face image in them
+        out = RetinaFace.detect_faces(img, threshold=0.5)
+        is_face_detected = isinstance(out, dict)
+        if not is_face_detected:
+            return "This is not a passport"
+
+        # Extract features using pre-trained transformer
         img_processed = self.feature_extractor(images=img,
                                                return_tensors="pt")
         img_processed = img_processed["pixel_values"]
@@ -70,11 +78,6 @@ class PassportClassifier:
         logits = self.clf(img_array).cpu().numpy()
         prediction = np.argsort(logits)
         prediction = prediction[0][2:]
-        out = RetinaFace.detect_faces(img, threshold=0.5)
-        is_face_detected = isinstance(out, dict)
-
-        if not is_face_detected:
-            return "This is not a passport"
 
         # if face detected and model predicted passport, return passport
         if 3 in prediction:
